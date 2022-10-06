@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class PetController extends Controller
 {
     public function index() {
-        $pet = Pet::where('passport_id', 123)->first();
-        dump($pet->name);
+        $pets = Pet::all();
+        return view('pet', compact('pets'));
     }
 
     public function create() {
@@ -18,8 +18,8 @@ class PetController extends Controller
                 'name' => 'boy',
                 'animal' => 'dog',
                 'passport_id' => '444',
-            ],
-
+            ], 
+            
             [
                 'name' => 'another name',
                 'animal' => 'another animal',
@@ -87,6 +87,6 @@ class PetController extends Controller
             'name' => 'updateOrCreate',
         ], $anotherPet);
 
-        dd('hi!');
+        dd('updateOrCreate');
     }
 }
