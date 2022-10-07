@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Document</title>
 </head>
 <body>
-<div>
-    <div>
-        <nav>
-            <li><a href="{{ route('about.index') }}">About</a></li>
-            <li><a href="{{ route('pets.index') }}"">Pets</a></li>
-            <li><a href="{{ route('first_page.index') }}"">First Page</a></li>
-            <li><a href="{{ route('second_page.index') }}"">Second Page</a></li>
+<div class="container">
+    <div class="row">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid"> 
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('about.index') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pets.index') }}">Pets</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('first_page.index') }}">First Page</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('second_page.index') }}">Second Page</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
         </nav>
     </div>
+
     @yield('content')
 </div>
 </body>
