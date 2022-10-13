@@ -16,7 +16,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('about.index') }}">About</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pets.index') }}">Pets</a>
+                        <a class="nav-link" href="{{ route('pet.index') }}">Pets</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('first_page.index') }}">First Page</a>
@@ -24,7 +24,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('second_page.index') }}">Second Page</a>
                         </li>
-                        
+                                                
                     </ul>
                 </div>
             </div>
@@ -32,6 +32,7 @@
     </div>
 
     @yield('content')
+
 </div>
 </body>
 </html>

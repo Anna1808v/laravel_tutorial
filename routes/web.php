@@ -17,8 +17,15 @@ Route::get('/hi', function () {
     return 'welcome';
 });
 
-Route::get('/pets', 'PetController@index')->name('pets.index');
-Route::get('/pets/create', 'PetController@create');
+Route::get('/pets', 'PetController@index')->name('pet.index');
+Route::get('/pets/create', 'PetController@create')->name('pet.create');
+
+Route::post('/pets', 'PetController@store')->name('pet.store');
+Route::get('/pets/{pet}', 'PetController@show')->name('pet.show');
+Route::get('/pets/{pet}/edit', 'PetController@edit')->name('pet.edit');
+Route::patch('/pets/{pet}', 'PetController@update')->name('pet.update');
+Route::delete('/pets/{pet}', 'PetController@destroy')->name('pet.destroy');
+
 Route::get('/pets/update', 'PetController@update');
 Route::get('/pets/delete', 'PetController@delete');
 Route::get('/pets/first_or_create', 'PetController@firstOrCreate');

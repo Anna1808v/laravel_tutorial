@@ -9,50 +9,52 @@ class PetController extends Controller
 {
     public function index() {
         $pets = Pet::all();
-        return view('pet', compact('pets'));
+        return view('pet.index', compact('pets'));
     }
 
     public function create() {
-        $petsArr = [
-            [
-                'name' => 'boy',
-                'animal' => 'dog',
-                'passport_id' => '444',
-            ], 
-            
-            [
-                'name' => 'another name',
-                'animal' => 'another animal',
-                'passport_id' => '000',
-            ],
-        ];
-
-        foreach($petsArr as $item){
-            Pet::create([
-                'name' => $item['name'],
-                'animal' => $item['animal'],
-                'passport_id' => $item['passport_id'],
-            ]);
-        }
-        dd('created');
+        return view('pet.create');
     } 
     
-    public function update() {
-        $pet = Pet::find(1);
-        $pet->update([
-            'name' => '111updated',
-            'animal' => '1111updated',
-            'passport_id' => '9999',
-
+    public function store() {
+        $data = request()->validate([
+            'name' => 'string',
+            'animal' => 'string',
+            'passport_id' => 'integer',
         ]);
-        dd('updated');
+        Pet::create($data);
+        return redirect()->route('pet.index');
+    } 
 
+    public function show(Pet $pet) {
+        return view('pet.show', compact('pet'));
+        dd($pet);
+    }
+
+    public function edit(Pet $pet) {
+        return view('pet.edit', compact('pet'));
+    }
+
+    public function update(Pet $pet) {
+
+        $data = request()->validate([
+            'name' => 'string',
+            'animal' => 'string',
+            'passport_id' => 'integer',
+        ]);
+        $pet->update($data);
+        return redirect()->route('pet.show', $pet->id); 
     }
 
     public function delete() {
         $pet = Pet::withTrashed()->find(4);
         $pet->restore();
         dd('restore');
+    }
+
+    public function destroy(Pet $pet) {
+        $pet->delete();
+        return redirect()->route('pet.index');
     }
 
     public function firstOrCreate() {
