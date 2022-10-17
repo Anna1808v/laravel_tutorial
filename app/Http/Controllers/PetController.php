@@ -3,20 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
-    public function index() {
-        $pets = Pet::all();
-        return view('pet.index', compact('pets'));
+    public function index() 
+    {
+        $category = Category::find(2);
+        $pets = Pet::find(2);
+        dd($pets->category);
     }
 
-    public function create() {
+    public function create() 
+    {
         return view('pet.create');
     } 
     
-    public function store() {
+    public function store() 
+    {
         $data = request()->validate([
             'name' => 'string',
             'animal' => 'string',
@@ -26,16 +31,19 @@ class PetController extends Controller
         return redirect()->route('pet.index');
     } 
 
-    public function show(Pet $pet) {
+    public function show(Pet $pet) 
+    {
         return view('pet.show', compact('pet'));
         dd($pet);
     }
 
-    public function edit(Pet $pet) {
+    public function edit(Pet $pet) 
+    {
         return view('pet.edit', compact('pet'));
     }
 
-    public function update(Pet $pet) {
+    public function update(Pet $pet) 
+    {
 
         $data = request()->validate([
             'name' => 'string',
@@ -46,18 +54,21 @@ class PetController extends Controller
         return redirect()->route('pet.show', $pet->id); 
     }
 
-    public function delete() {
+    public function delete() 
+    {
         $pet = Pet::withTrashed()->find(4);
         $pet->restore();
         dd('restore');
     }
 
-    public function destroy(Pet $pet) {
+    public function destroy(Pet $pet) 
+    {
         $pet->delete();
         return redirect()->route('pet.index');
     }
 
-    public function firstOrCreate() {
+    public function firstOrCreate() 
+    {
 
         $anotherPet = [
             'name' => 'firstOrCreate',
@@ -77,7 +88,8 @@ class PetController extends Controller
         dd('firstOrCreate');
     }
 
-    public function updateOrCreate() {
+    public function updateOrCreate() 
+    {
 
         $anotherPet = [
             'name' => 'updateOrCreate',

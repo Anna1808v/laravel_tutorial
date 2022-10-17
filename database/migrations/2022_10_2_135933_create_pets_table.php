@@ -12,16 +12,24 @@ class CreatePetsTable extends Migration
      * @return void
      */
     public function up()
+    
     {
         Schema::create('pets', function (Blueprint $table) {
+
             $table->id();
             $table->timestamps();
             $table->string('name');
             $table->string('animal');
-            $table->string('animal');
             $table->string('passport_id');
 
             $table->softDeletes();
+
+            $table->unsignedBigInteger('category_id')->nullable();
+
+            $table->index('category_id', 'pet_category_idx');
+
+            $table->foreign('category_id', 'pet_category_fk')->references('id')->on('categories');
+
         });
     }
 
