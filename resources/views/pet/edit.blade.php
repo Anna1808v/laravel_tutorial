@@ -16,6 +16,18 @@
                 <label for="passport_id" class="form-label">Passport ID</label>
                 <input type="number" name="passport_id" class="form-control" id="passport_id" placeholder="Passport ID" value="{{ $pet->passport_id }}">
             </div>
+            <div class="form-group">
+                <select class="form-control" name="category_id" id="category">
+                    @foreach($categories as $category)
+                        <option 
+                            <? $category->id === $pet->category_id ? 'selected' : '' ?>
+                            value="{{ $category->id }}">{{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
+            <br>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

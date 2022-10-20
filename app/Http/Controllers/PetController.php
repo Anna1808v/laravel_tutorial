@@ -11,14 +11,14 @@ class PetController extends Controller
 {
     public function index() 
     {
-        $pets = Pet::find(2);
-        $hashtag = Hashtag::find(2);
-        dd($hashtag->pets);
+        $pets = Pet::all();
+        return view('pet.index', compact('pets'));
     }
 
     public function create() 
     {
-        return view('pet.create');
+        $categories = Category::all();
+        return view('pet.create',  compact('categories'));
     } 
     
     public function store() 
@@ -27,6 +27,7 @@ class PetController extends Controller
             'name' => 'string',
             'animal' => 'string',
             'passport_id' => 'integer',
+            'category_id' => 'int',
         ]);
         Pet::create($data);
         return redirect()->route('pet.index');
@@ -40,7 +41,8 @@ class PetController extends Controller
 
     public function edit(Pet $pet) 
     {
-        return view('pet.edit', compact('pet'));
+        $categories = Category::all();
+        return view('pet.edit', compact('pet', 'categories'));
     }
 
     public function update(Pet $pet) 
@@ -50,6 +52,7 @@ class PetController extends Controller
             'name' => 'string',
             'animal' => 'string',
             'passport_id' => 'integer',
+            'category_id' => 'int',
         ]);
         $pet->update($data);
         return redirect()->route('pet.show', $pet->id); 
