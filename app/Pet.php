@@ -17,4 +17,10 @@ class Pet extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function hashtag()
+    {
+        return $this->belongsToMany(Hashtag::class, 'hashtag_posts', 'pet_id', 'hashtag_id');
+    }
+
 }

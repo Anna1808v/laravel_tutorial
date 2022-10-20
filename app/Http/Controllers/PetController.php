@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use App\Hashtag;
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,9 @@ class PetController extends Controller
 {
     public function index() 
     {
-        $category = Category::find(2);
         $pets = Pet::find(2);
-        dd($pets->category);
+        $hashtag = Hashtag::find(2);
+        dd($hashtag->pets);
     }
 
     public function create() 
