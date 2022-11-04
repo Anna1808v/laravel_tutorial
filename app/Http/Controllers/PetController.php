@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pet;
 use App\Hashtag;
 use App\Category;
+use App\HashtagPet;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -18,7 +19,9 @@ class PetController extends Controller
     public function create() 
     {
         $categories = Category::all();
-        return view('pet.create',  compact('categories'));
+        $hashtags = Hashtag::all();
+
+        return view('pet.create',  compact('categories', 'hashtags'));
     } 
     
     public function store() 
@@ -28,8 +31,20 @@ class PetController extends Controller
             'animal' => 'string',
             'passport_id' => 'integer',
             'category_id' => 'int',
+            'hashtags' => '',
         ]);
-        Pet::create($data);
+
+        $hashtags = $data['hashtags'];
+        unset($data["hashtags"]);
+
+        $pet = Pet::create($data);
+        // foreach($hashtags as $hashtag){
+        //     HashtagPet::firstOrcreate([
+        //         'hashtag_id' => $hashtag,
+        //         'pet_id' => $pet->id,
+        //     ]);
+        // }
+        $pet->hashtag()->attach($hashtags);
         return redirect()->route('pet.index');
     } 
 

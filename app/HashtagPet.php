@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HashtagPost extends Model
+class HashtagPet extends Model
 {
-    //
+    protected $guarded = false;
 }

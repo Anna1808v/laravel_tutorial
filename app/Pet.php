@@ -20,7 +20,7 @@ class Pet extends Model
 
     public function hashtag()
     {
-        return $this->belongsToMany(Hashtag::class, 'hashtag_posts', 'pet_id', 'hashtag_id');
+        return $this->belongsToMany(Hashtag::class, 'hashtag_pets', 'pet_id', 'hashtag_id');
     }
 
 }
