@@ -57,7 +57,9 @@ class PetController extends Controller
     public function edit(Pet $pet) 
     {
         $categories = Category::all();
-        return view('pet.edit', compact('pet', 'categories'));
+        $hashtags = Hashtag::all();
+
+        return view('pet.edit', compact('pet', 'categories','hashtags'));
     }
 
     public function update(Pet $pet) 
@@ -68,9 +70,16 @@ class PetController extends Controller
             'animal' => 'string',
             'passport_id' => 'integer',
             'category_id' => 'int',
+            'hashtags' => '',
         ]);
+        $hashtags = $data['hashtags'];
+        unset($data["hashtags"]);
+
         $pet->update($data);
+        $pet->hashtag()->sync($hashtags);
         return redirect()->route('pet.show', $pet->id); 
+
+       
     }
 
     public function delete() 

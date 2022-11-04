@@ -20,9 +20,21 @@
                 <select class="form-control" name="category_id" id="category">
                     @foreach($categories as $category)
                         <option 
-                            <? $category->id === $pet->category_id ? 'selected' : '' ?>
+                            {{ $category->id === $pet->category_id ? ' selected' : '' }}
                             value="{{ $category->id }}">{{ $category->name }}
                         </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hashtags">Tags</label>
+                <select multiple class="form-control" id="hashtags" name="hashtags[]">
+                    @foreach($hashtags as $hashtag)
+                        <option 
+                            @foreach($pet->hashtag as $petHashtag)
+                                {{ $hashtag->id === $petHashtag->id ? ' selected' : '' }}
+                            @endforeach
+                            value="{{ $hashtag->id}} ">{{ $hashtag->title}}</option>
                     @endforeach
                 </select>
             </div>
