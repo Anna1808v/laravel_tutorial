@@ -27,9 +27,9 @@ class PetController extends Controller
     public function store() 
     {
         $data = request()->validate([
-            'name' => 'string',
+            'name' => 'required|string',
             'animal' => 'string',
-            'passport_id' => 'integer',
+            'passport_id' => 'required|integer',
             'category_id' => 'int',
             'hashtags' => '',
         ]);
