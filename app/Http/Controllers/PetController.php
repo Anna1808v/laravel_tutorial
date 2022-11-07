@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Pet;
 use App\Hashtag;
 use App\Category;
-use App\HashtagPet;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
     public function index() 
     {
-        $pets = Pet::all();
+        $pets = Pet::find(4);
+        $category = Category::find(1);
+        $hashtag = Hashtag::find(1);
+        dd($pets->hashtags);
         return view('pet.index', compact('pets'));
     }
 

@@ -2,25 +2,17 @@
 
 namespace App;
 
-use App\Pet;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pet extends Model
 {
-    use SoftDeletes;
-    
-    protected $table = 'pets';
-    protected $guarded = false;
-
-    public function category() 
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class);
     }
 
-    public function hashtag()
+    public function hashtags()
     {
-        return $this->belongsToMany(Hashtag::class, 'hashtag_pets', 'pet_id', 'hashtag_id');
+        return $this->belongsToMany(Hashtag::class);
     }
-
 }

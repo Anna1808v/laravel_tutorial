@@ -8,7 +8,6 @@ class Hashtag extends Model
 {
     public function pets()
     {
-        return $this->belongsToMany(Pet::class, 'hashtag_posts', 'hashtag_id', 'pet_id');
+        return $this->belongsToMany(Pet::class);
     }
-
 }
