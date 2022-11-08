@@ -17,14 +17,17 @@ Route::get('/hi', function () {
     return 'welcome';
 });
 
-Route::get('/pets', 'PetController@index')->name('pet.index');
-Route::get('/pets/create', 'PetController@create')->name('pet.create');
+Route::group(['namespace'=>'Pet'], function() {
 
-Route::post('/pets', 'PetController@store')->name('pet.store');
-Route::get('/pets/{pet}', 'PetController@show')->name('pet.show');
-Route::get('/pets/{pet}/edit', 'PetController@edit')->name('pet.edit');
-Route::patch('/pets/{pet}', 'PetController@update')->name('pet.update');
-Route::delete('/pets/{pet}', 'PetController@destroy')->name('pet.destroy');
+    Route::get('/pets', 'IndexController')->name('pet.index');
+    Route::get('/pets/create', 'CreateController')->name('pet.create');
+
+    Route::post('/pets', 'StoreController')->name('pet.store');
+    Route::get('/pets/{pet}', 'ShowController')->name('pet.show');
+    Route::get('/pets/{pet}/edit', 'EditController')->name('pet.edit');
+    Route::patch('/pets/{pet}', 'UpdateController')->name('pet.update');
+    Route::delete('/pets/{pet}', 'DestroyController')->name('pet.destroy');
+});
 
 Route::get('/pets/update', 'PetController@update');
 Route::get('/pets/delete', 'PetController@delete');
