@@ -4,29 +4,19 @@ namespace App\Http\Controllers\Pet;
 
 use App\Pet;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pet\StoreRequest;
 
 class StoreController extends Controller
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'name' => 'required|string',
-            'animal' => 'string',
-            'passport_id' => 'required|integer',
-            'category_id' => 'int',
-            'hashtags' => '',
-        ]);
+        $data = $request->validated();
 
         $hashtags = $data['hashtags'];
         unset($data["hashtags"]);
 
         $pet = Pet::create($data);
-        // foreach($hashtags as $hashtag){
-        //     HashtagPet::firstOrcreate([
-        //         'hashtag_id' => $hashtag,
-        //         'pet_id' => $pet->id,
-        //     ]);
-        // }
+
         $pet->hashtag()->attach($hashtags);
         return redirect()->route('pet.index');
     }

@@ -7,15 +7,9 @@ use App\Http\Controllers\Controller;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Pet $pet)
+    public function __invoke(UpdateRequest $request, Pet $pet)
     {
-        $data = request()->validate([
-            'name' => 'string',
-            'animal' => 'string',
-            'passport_id' => 'integer',
-            'category_id' => 'int',
-            'hashtags' => '',
-        ]);
+        $data = request()->validate;
         $hashtags = $data['hashtags'];
         unset($data["hashtags"]);
 
