@@ -6,9 +6,10 @@ use App\Pet;
 use App\Hashtag;
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Pet\BaseController;
 use App\Http\Controllers\Pet\EditController;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
     public function __invoke(Pet $pet)
     {

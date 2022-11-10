@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Pet;
 use App\Hashtag;
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Pet\BaseController;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke()
     {
