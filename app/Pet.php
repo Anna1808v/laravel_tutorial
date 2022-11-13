@@ -6,6 +6,7 @@ use App\Hashtag;
 use App\Category;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Pet extends Model
 {
 
