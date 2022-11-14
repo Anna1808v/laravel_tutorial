@@ -12,10 +12,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $pets = Pet::all();
-        $category = Category::find(1);
-        $hashtag = Hashtag::find(1);
-        //dd($pets->hashtags);
+        $pets = Pet::paginate(10);
         
         return view('pet.index', compact('pets'));
     }
