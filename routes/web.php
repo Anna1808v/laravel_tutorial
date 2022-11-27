@@ -29,13 +29,25 @@ Route::group(['namespace'=>'Pet'], function() {
     Route::delete('/pets/{pet}', 'DestroyController')->name('pet.destroy');
 });
 
+// Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+//     Route::group(['namespace' => 'Pet'], function() {
+//         Route::get('/pet', 'IndexController')->name('admin.post.index');
+//     });
+// });
+
+Route::prefix('admin')->namespace('Admin')->group(function (){
+    Route::namespace('Pet')->group( function (){
+        Route::get('/pet', 'IndexController')->name('admin.pet.index');
+    });
+});
+
 Route::get('/pets/update', 'PetController@update');
 Route::get('/pets/delete', 'PetController@delete');
 Route::get('/pets/first_or_create', 'PetController@firstOrCreate');
 Route::get('/pets/update_or_create', 'PetController@updateOrCreate');
 
 Route::get('/about', 'AboutController@index')->name('about.index');
-Route::get('/first_page', 'First_pageController@index')->name('first_page.index');
+Route::get('/main', 'MainController@index')->name('main.index');
 Route::get('/second_page', 'Second_pageController@index')->name('second_page.index');
 
 

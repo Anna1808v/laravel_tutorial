@@ -14,7 +14,7 @@ class MyPlaceController extends Controller
         return "this page for one article";
     }
 
-    public function first_page() {
+    public function main() {
         return "this page is first";
     }
 
