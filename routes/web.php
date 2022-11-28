@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/hi', function () {
-    return 'welcome';
-});
+Route::get('/', 'HomeController@index');
 
 Route::group(['namespace'=>'Pet'], function() {
 
@@ -59,3 +57,7 @@ Route::get('/second_page', 'Second_pageController@index')->name('second_page.ind
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
