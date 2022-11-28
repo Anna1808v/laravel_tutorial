@@ -11,14 +11,13 @@ use App\Http\Requests\Pet\FilterRequest;
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke(FilterRequest $request)
     {
-        // $data = $request->validated();
+        $data = $request->validated();
 
-        // $filter = app()->make(PetFilter::class, ['queryParams' => array_filter($data)]);
-        // $pets = Pet::filter($filter)->paginate(10);
-        
-        // return view('pet.index', compact('pets'));
-        return view('admin.pet.index');
+        $filter = app()->make(PetFilter::class, ['queryParams' => array_filter($data)]);
+        $pets = Pet::filter($filter)->paginate(10);
+
+        return view('admin.pet.index', compact('pets'));
     }
 }
