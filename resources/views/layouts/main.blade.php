@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{ route('pet.index') }}">Pets</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('first_page.index') }}">First Page</a>
+                        <a class="nav-link" href="{{ route('main.index') }}">First Page</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('second_page.index') }}">Second Page</a>

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['namespace'=>'Pet'], function() {
 
@@ -33,7 +33,7 @@ Route::group(['namespace'=>'Pet'], function() {
 //     });
 // });
 
-Route::prefix('admin')->namespace('Admin')->group(function (){
+Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function (){
     Route::namespace('Pet')->group( function (){
         Route::get('/pet', 'IndexController')->name('admin.pet.index');
     });
