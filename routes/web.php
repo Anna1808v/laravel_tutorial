@@ -27,12 +27,6 @@ Route::group(['namespace'=>'Pet'], function() {
     Route::delete('/pets/{pet}', 'DestroyController')->name('pet.destroy');
 });
 
-// Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
-//     Route::group(['namespace' => 'Pet'], function() {
-//         Route::get('/pet', 'IndexController')->name('admin.post.index');
-//     });
-// });
-
 Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function (){
     Route::namespace('Pet')->group( function (){
         Route::get('/pet', 'IndexController')->name('admin.pet.index');

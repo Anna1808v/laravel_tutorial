@@ -13,17 +13,22 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('about.index') }}">About</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('about.index') }}">About</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pet.index') }}">Pets</a>
+                            <a class="nav-link" href="{{ route('pet.index') }}">Pets</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('main.index') }}">First Page</a>
+                            <a class="nav-link" href="{{ route('main.index') }}">First Page</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('second_page.index') }}">Second Page</a>
+                            <a class="nav-link" href="{{ route('second_page.index') }}">Second Page</a>
                         </li>
+                        @can('view', auth()->user())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.pet.index') }}">Admin</a>
+                            </li>
+                        @endcan
                                                 
                     </ul>
                 </div>
