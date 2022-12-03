@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pet;
 
 use App\Pet;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Pet\PetResource;
 use App\Http\Requests\Pet\UpdateRequest;
 use App\Http\Controllers\Pet\BaseController;
 
@@ -13,8 +14,9 @@ class UpdateController extends BaseController
     {
         $data = $request->validated();
 
-        $this->service->update($pet, $data);
+        $pet = $this->service->update($pet, $data);
 
-        return redirect()->route('pet.show', $pet->id); 
+        return new PetResource($pet);
+        //return redirect()->route('pet.show', $pet->id); 
     }
 }

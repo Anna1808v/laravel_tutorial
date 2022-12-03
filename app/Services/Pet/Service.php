@@ -14,6 +14,8 @@ class Service
 
         $pet = Pet::create($data);
         $pet->hashtag()->attach($hashtags);
+
+        return $pet;
     }
 
     public function update($pet, $data)
@@ -23,5 +25,6 @@ class Service
 
         $pet->update($data);
         $pet->hashtag()->sync($hashtags);
+        return $pet->fresh();
     }
 }

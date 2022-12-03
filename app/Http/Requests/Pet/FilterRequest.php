@@ -29,6 +29,8 @@ class FilterRequest extends FormRequest
             'passport_id' => 'integer',
             'category_id' => 'int',
             'hashtags' => '',
+            'page' => '',
+            'per_page' => '',
         ];
     }
 }
