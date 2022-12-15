@@ -34,4 +34,11 @@ Route::group([
 
 Route::group(['namespace' => 'Pet', 'middleware' => 'jwt.auth'], function() {
     Route::get('/pets', 'IndexController');
+    Route::get('/pets/create', 'CreateController');
+    
+    Route::post('/pets', 'StoreController');
+    Route::get('/pets/{pet}', 'ShowController');
+    Route::get('/pets/{pet}/edit', 'EditController');
+    Route::patch('/pets/{pet}', 'UpdateController');
+    Route::delete('/pets/{pet}', 'DestroyController');
 });

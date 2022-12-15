@@ -27,8 +27,9 @@ class StoreRequest extends FormRequest
             'name' => 'string',
             'animal' => 'string',
             'passport_id' => 'integer',
-            'category_id' => 'int',
+            'category' => '',
             'hashtags' => '',
+            'hashtags.*.title' => '',
         ];
     }
 }

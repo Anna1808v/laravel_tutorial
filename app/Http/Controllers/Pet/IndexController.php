@@ -27,7 +27,7 @@ class IndexController extends BaseController
         $filter = app()->make(PetFilter::class, ['queryParams' => array_filter($data)]);
         $pets = Pet::filter($filter)->paginate($perPage, ['*'], 'page', $page);
 
-        //return view('pet.index', compact('pets'));
-        return PetResource::collection($pets);
+        return view('pet.index', compact('pets'));
+        //return PetResource::collection($pets);
     }
 }
