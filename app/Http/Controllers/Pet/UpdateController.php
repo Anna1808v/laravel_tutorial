@@ -15,8 +15,7 @@ class UpdateController extends BaseController
         $data = $request->validated();
 
         $pet = $this->service->update($pet, $data);
-
-        return new PetResource($pet);
+        return $pet instanceof Pet ? new PetResource($pet) : $pet;
         //return redirect()->route('pet.show', $pet->id); 
     }
 }

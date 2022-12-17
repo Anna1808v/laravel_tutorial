@@ -16,15 +16,8 @@ class StoreController extends BaseController
     {
         $data = $request->validated();
         $pet = $this->service->store($data);
-        //dd($pet);
-        $arr = [
-            "name" => $pet->name,
-            "animal" => $pet->animal,
-            "passport_id" => $pet->passport_id,
-
-        ];
-        //dd($arr);
-        return new PetResource($pet);
+        
+        return $pet instanceof Pet ? new PetResource($pet) : $pet;
         //return redirect()->route('pet.index');
     }
 }
